@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelter Sky Events - Nairobi Event Planning</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN (Corrected) -->
+    <script src="https://unpkg.com/lucide@latest/dist/lucide.min.js"></script>
+    
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            /* Frosted glass effect */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            
+            /* Subtle border */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            
+            /* Soft shadow */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Form input styling */
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            border-color: rgba(192, 132, 252, 0.8); /* Purple-400 */
+        }
+        
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- New Dynamic Gallery Styles --- */
+
+        /* Style for the gallery tabs */
+        .gallery-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .gallery-tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        /* Active state for the tab */
+        .gallery-tab.active {
+            background: rgba(234, 179, 8, 0.2); /* Amber-500 with 20% opacity */
+            border-color: rgba(234, 179, 8, 0.5); /* Amber-500 */
+            color: #EAB308; /* Amber-500 */
+            font-weight: 500;
+        }
+
+        /* Main gallery image */
+        #main-gallery-image {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Thumbnail images */
+        .thumbnail-image {
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+        .thumbnail-image:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        /* Active state for the thumbnail */
+        .thumbnail-image.active {
+            opacity: 1;
+            border-color: #EAB308; /* Amber-500 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-stone-900 text-gray-200 min-h-screen antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card shadow-none border-b border-white/10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white transition-colors hover:text-amber-400">
+                Shelter Sky Events
+            </a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-200 hover:text-amber-400 transition-colors">About</a>
+                <a href="#services" class="text-gray-200 hover:text-amber-400 transition-colors">Services</a>
+                <a href="#gallery" class="text-gray-200 hover:text-amber-400 transition-colors">Gallery</a>
+                <a href="#contact" class="bg-amber-500 text-gray-900 px-5 py-2 rounded-full font-medium hover:bg-amber-400 transition-all duration-300 shadow-lg">
+                    Contact Us
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 glass-card border-t border-white/10">
+            <a href="#about" class="block px-6 py-3 text-white hover:bg-white/5 mobile-link">About</a>
+            <a href="#services" class="block px-6 py-3 text-white hover:bg-white/5 mobile-link">Services</a>
+            <a href="#gallery" class="block px-6 py-3 text-white hover:bg-white/5 mobile-link">Gallery</a>
+            <a href="#contact" class="block px-6 py-3 text-amber-400 font-medium hover:bg-white/5 mobile-link">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Crafting <span class="text-amber-400">Unforgettable</span> Moments
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-xl mx-auto">
+                    Nairobi's premier partner for exquisite tents, chairs, decor, and full-service event planning. Let us bring your vision to life.
+                </p>
+                <a href="#contact" class="bg-amber-500 text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-amber-400 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+                    Get a Free Quote
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="glass-card rounded-3xl p-8 md:p-16 max-w-5xl mx-auto fade-in">
+                    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                        <img 
+                            src="https://placehold.co/300x300/EAB308/1E1B4B?text=Ann+M." 
+                            alt="Ann Muriithi, Director" 
+                            class="w-48 h-48 md:w-60 md:h-60 rounded-full object-cover border-4 border-white/20 shadow-2xl flex-shrink-0"
+                            onerror="this.src='https://placehold.co/300x300/EAB308/1E1B4B?text=Ann+Muriithi'"
+                        >
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Meet Our Director</h2>
+                            <h3 class="text-2xl text-amber-400 font-medium mb-4">Ann Muriithi</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                With a deep passion for detail and a commitment to excellence, Ann leads the Shelter Sky Events team.
+                                We believe every event is a unique story waiting to be told. Based in the heart of Nairobi,
+                                our mission is to provide you with not just supplies, but a complete, stress-free experience
+                                that your guests will talk about for years to come.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-32 bg-white/5">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 fade-in">What We Offer</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card 1: Tents -->
+                    <div class="glass-card rounded-3xl p-8 text-center fade-in" style="transition-delay: 100ms;">
+                        <div class="w-20 h-20 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-amber-500/20">
+                            <i data-lucide="tent" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Custom Tent Solutions</h3>
+                        <p class="text-gray-300">
+                            From intimate gatherings to large-scale corporate functions, we provide a wide range of high-quality tents to create the perfect shelter.
+                        </p>
+                    </div>
+                    
+                    <!-- Service Card 2: Chairs -->
+                    <div class="glass-card rounded-3xl p-8 text-center fade-in" style="transition-delay: 200ms;">
+                        <div class="w-20 h-20 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-amber-500/20">
+                            <i data-lucide="armchair" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Elegant Seating</h3>
+                        <p class="text-gray-300">
+                            Comfort meets style with our diverse collection of chairs, from classic Chiavaris to modern lounge seating, matching any event theme.
+                        </p>
+                    </div>
+                    
+                    <!-- Service Card 3: Decor -->
+                    <div class="glass-card rounded-3xl p-8 text-center fade-in" style="transition-delay: 300ms;">
+                        <div class="w-20 h-20 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-amber-500/20">
+                            <i data-lucide="sparkles" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Bespoke Decor</h3>
+                        <p class="text-gray-300">
+                            It's all in the details. We provide stunning decor, including lighting, drapery, and centerpieces, to transform your space.
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 fade-in">Our Past Events</h2>
+                
+                <!-- New Dynamic Gallery -->
+                <div class="glass-card rounded-3xl p-4 sm:p-8 max-w-5xl mx-auto fade-in">
+                    
+                    <!-- Gallery Tabs -->
+                    <div id="gallery-tabs" class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mb-6">
+                        <button class="gallery-tab py-2 px-4 rounded-lg" data-event="event1">
+                            Classic Burgundy
+                        </button>
+                        <button class="gallery-tab py-2 px-4 rounded-lg" data-event="event2">
+                            Vibrant Purple & Orange
+                        </button>
+                        <button class="gallery-tab py-2 px-4 rounded-lg" data-event="event3">
+                            Intimate Red & White
+                        </button>
+                    </div>
+                    
+                    <!-- Main Image Display -->
+                    <div class="mb-4">
+                        <img id="main-gallery-image" src="https://placehold.co/800x600/722F37/FFFFFF?text=Loading+Image..." 
+                             alt="Main gallery view of event setup" 
+                             class="w-full h-auto max-h-[60vh] object-cover rounded-2xl shadow-lg border border-white/10"
+                             onerror="this.src='https://placehold.co/800x600/1E1B4B/FFFFFF?text=Image+Not+Found'">
+                    </div>
+                    
+                    <!-- Thumbnail Row -->
+                    <div id="gallery-thumbnails" class="flex justify-center gap-2 sm:gap-4 overflow-x-auto p-2">
+                        <!-- Thumbnails will be dynamically inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-white/5">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16 fade-in">Get in Touch</h2>
+                <div class="glass-card rounded-3xl p-8 md:p-12 max-w-6xl mx-auto fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        
+                        <!-- Contact Info -->
+                        <div class="space-y-6">
+                            <h3 class="text-2xl font-semibold text-white mb-4">Contact Details</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Ready to start planning? Send us a message or give us a call. We're excited to hear from you!
+                            </p>
+                            
+                            <a href="tel:0724016269" class="flex items-center space-x-4 group">
+                                <i data-lucide="phone" class="w-6 h-6 text-amber-400"></i>
+                                <span class="text-lg text-gray-200 group-hover:text-amber-400 transition-colors">0724016269 / 0787458511</span>
+                            </a>
+                            
+                            <a href="mailto:shelterskyevents@gmail.com" class="flex items-center space-x-4 group">
+                                <i data-lucide="mail" class="w-6 h-6 text-amber-400"></i>
+                                <span class="text-lg text-gray-200 group-hover:text-amber-400 transition-colors">shelterskyevents@gmail.com</span>
+                            </a>
+                            
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-amber-400"></i>
+                                <span class="text-lg text-gray-200">Nairobi, Kenya</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Form -->
+                        <form action="#" method="POST">
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-200 mb-2">Full Name</label>
+                                    <input type="text" id="name" name="name" class="form-input w-full rounded-lg py-3 px-4 text-white placeholder-gray-400" placeholder="Your Name" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-200 mb-2">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form-input w-full rounded-lg py-3 px-4 text-white placeholder-gray-400" placeholder="you@example.com" required>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-200 mb-2">Message</label>
+                                    <textarea id="message" name="message" rows="5" class="form-input w-full rounded-lg py-3 px-4 text-white placeholder-gray-400" placeholder="Tell us about your event..." required></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-amber-500 text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-amber-400 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-amber-400 transition-colors">
+                    <i data-lucide="twitter" class="w-6 h-6"></i>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Shelter Sky Events. All rights reserved.</p>
+            <p class="text-sm mt-2">Nairobi, Kenya</p>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for the DOM to be fully loaded before running scripts
+        document.addEventListener('DOMContentLoaded', (event) => {
+            
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.error('Lucide icons script not loaded.');
+            }
+
+            // Set current year in footer
+            const currentYearEl = document.getElementById('current-year');
+            if (currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Hide mobile menu on link click
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Fade-in on scroll animation
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeInElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- New Dynamic Gallery Script ---
+
+            // Gallery Data:
+            // IMPORTANT: Rename your uploaded images to match these filenames.
+            const eventGalleries = {
+                'event1': {
+                    title: 'Classic Burgundy',
+                    images: [
+                        { src: 'event1_1.jpg', alt: 'Wide shot of large white tent with burgundy tables' }, // Event1_Image1.JPG
+                        { src: 'event1_2.jpg', alt: 'High angle view of two white tents' },             // Event1_Image2.JPG
+                        { src: 'event1_3.jpg', alt: 'Ground level view of white tent side' },            // Event1_Image3.JPG
+                        { src: 'event1_4.jpg', alt: 'Close-up of burgundy table setting' }               // Event1_Image4.JPG
+                    ]
+                },
+                'event2': {
+                    title: 'Vibrant Purple & Orange',
+                    images: [
+                        { src: 'event2_1.jpg', alt: 'Row of tents with purple and orange decor' },      // Event2_Image1.JPG
+                        { src: 'event2_2.jpg', alt: 'High angle view of purple and orange tents' },     // Event2_Image2.JPG
+                        { src: 'event2_3.jpg', alt: 'Close-up of orange and purple table setting' }     // Event2_Image3.JPG
+                    ]
+                },
+                'event3': {
+                    title: 'Intimate Red & White',
+                    images: [
+                        { src: 'event3_1.jpg', alt: 'Small tent with red and white decor' },            // Event3_Image1.JPG
+                        { src: 'event3_2.jpg', alt: 'High angle view of red and white tent' },         // Event3_Image2.JPG
+                        { src: 'event3_3.jpg', alt: 'Close-up of red and white table setting' }         // Event3_Image3.JPG
+                    ]
+                }
+            };
+
+            const mainImage = document.getElementById('main-gallery-image');
+            const thumbnailContainer = document.getElementById('gallery-thumbnails');
+            const tabs = document.querySelectorAll('.gallery-tab');
+
+            // Function to set the main image
+            function setMainImage(src, alt) {
+                mainImage.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    mainImage.src = src;
+                    mainImage.alt = alt;
+                    mainImage.style.opacity = 1; // Fade in
+                }, 300); // Match transition duration
+
+                // Update active state for thumbnails
+                document.querySelectorAll('.thumbnail-image').forEach(thumb => {
+                    if (thumb.dataset.src === src) {
+                        thumb.classList.add('active');
+                    } else {
+                        thumb.classList.remove('active');
+                    }
+                });
+            }
+
+            // Function to load a specific event gallery
+            function loadEventGallery(eventName) {
+                const eventData = eventGalleries[eventName];
+                if (!eventData) return;
+
+                // Clear existing thumbnails
+                thumbnailContainer.innerHTML = '';
+
+                // Set main image to the first image of the event
+                setMainImage(eventData.images[0].src, eventData.images[0].alt);
+
+                // Create and append new thumbnails
+                eventData.images.forEach((image, index) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = image.src;
+                    thumb.alt = `Thumbnail: ${image.alt}`;
+                    thumb.dataset.src = image.src; // Store src to compare
+                    thumb.className = 'thumbnail-image w-16 h-16 md:w-24 md:h-24 object-cover rounded-lg glass-card';
+                    
+                    if (index === 0) {
+                        thumb.classList.add('active'); // Set first one as active
+                    }
+
+                    // Add click listener to thumbnail
+                    thumb.addEventListener('click', () => {
+                        setMainImage(image.src, image.alt);
+                    });
+
+                    thumbnailContainer.appendChild(thumb);
+                });
+
+                // Update active state for tabs
+                tabs.forEach(tab => {
+                    if (tab.dataset.event === eventName) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            }
+
+            // Add click listeners to tabs
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    loadEventGallery(tab.dataset.event);
+                });
+            });
+
+            // Load the first event gallery by default
+            loadEventGallery('event1');
+
+        });
+    </script>
+</body>
+</html>
